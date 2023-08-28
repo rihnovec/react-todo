@@ -1,21 +1,30 @@
+import { useState } from 'react'
+
 import MyButton from './components/MyButton'
+import TasksList from './components/TasksList'
 
 window.appData = {
   user: 'Anton'
 }
 
-let content
-if (window.appData.user) {
-  content = <div>Добро пожаловать, {window.appData.user}!</div>
-} else {
-  content = <div>Выполните вход</div>
+const defaultContent = window.appData.user ? `Добро пожаловать, ${window.appData.user}!` : 'Выполните вход'
+
+const App = () => {
+  const [content, setContent] = useState(defaultContent)
+
+  function onClickHandler() {
+    const newContent = prompt('Введите новый контент', '')
+
+    setContent(newContent)
+  }
+
+  return (
+    <div className="app">
+      <MyButton onClick={onClickHandler} />
+      <div className="app-content">{content}</div>
+      <TasksList />
+    </div>
+  )
 }
 
-const component = () => (
-  <div className="app">
-    <MyButton />
-    {content}
-  </div>
-)
-
-export default component
+export default App

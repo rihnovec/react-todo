@@ -1,5 +1,7 @@
-const component = () => (
-  <button type="button">Сменить пользователя</button>
-)
+const MyButton = ({onClick}) => {
+  return (
+    <button type="button" onClick={onClick}>Заменить контент</button>
+  )
+}
 
-export default component
+export default MyButton
